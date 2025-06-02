@@ -15,9 +15,9 @@ public class DonosC {
             BD.conexao();
             String SQL = "INSERT INTO Donos (nome_completo, cpf_cnpj, rg_ie, telefone, email, endereco, "
                        + "banco, agencia, conta, tipo_conta) VALUES ('" + dono.getNomeCompleto() + "','" 
-                       + dono.getCPF()+ "','" + dono.getRG()+ "','" + dono.getTelefone() + "','" 
-                       + dono.getEmail() + "','" + dono.getEndereco + "','" + dono.getBanco() + "','" 
-                       + dono.getAgencia() + "','" + dono.getConta() + "','" + dono.getTipodeconta()+ "')";
+                       + dono.getCpfCnpj() + "','" + dono.getRgIe() + "','" + dono.getTelefone() + "','" 
+                       + dono.getEmail() + "','" + dono.getEndereco() + "','" + dono.getBanco() + "','" 
+                       + dono.getAgencia() + "','" + dono.getConta() + "','" + dono.getTipoConta() + "')";
             BD.getStatement().execute(SQL);
             BD.desconectar();
         } catch(Exception e) {
@@ -31,11 +31,11 @@ public class DonosC {
         try {
             BD.conexao();
             String SQL = "UPDATE Donos SET nome_completo='" + dono.getNomeCompleto() + "', cpf_cnpj='" 
-                       + dono.getCPF()+ "', rg_ie='" + dono.getRG()+ "', telefone='" 
+                       + dono.getCpfCnpj() + "', rg_ie='" + dono.getRgIe() + "', telefone='" 
                        + dono.getTelefone() + "', email='" + dono.getEmail() + "', endereco='" 
                        + dono.getEndereco() + "', banco='" + dono.getBanco() + "', agencia='" 
                        + dono.getAgencia() + "', conta='" + dono.getConta() + "', tipo_conta='" 
-                       + dono.getTipodeconta()+ "' WHERE id_dono=" + id;
+                       + dono.getTipoConta() + "' WHERE id_dono=" + id;
             BD.getStatement().execute(SQL);
             BD.desconectar();
         } catch(Exception e) {
