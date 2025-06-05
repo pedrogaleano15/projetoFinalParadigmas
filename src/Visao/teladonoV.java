@@ -8,12 +8,12 @@ package Visao;
  *
  * @author User
  */
-public class cadastroDono extends javax.swing.JInternalFrame {
+public class teladonoV extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form cadastroDono
+     * Creates new form teladonoV
      */
-    public cadastroDono() {
+    public teladonoV() {
         initComponents();
     }
 

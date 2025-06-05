@@ -1,20 +1,18 @@
 package Modelo;
 
 public class DonoImovelM {
-    private int id;
     private String nomeCompleto;
     private String cpfCnpj;
     private String rgIe;
     private String telefone;
     private String email;
-    private String endereco; // Adicionado
+    private String endereco; 
     private String banco;
-    private String agencia; // Adicionado
+    private String agencia; 
     private String conta;
     private String tipoConta;
 
-    public DonoImovelM(int id, String nomeCompleto, String cpfCnpj, String rgIe, String telefone, String email, String endereco, String banco, String agencia, String conta, String tipoConta) {
-        this.id = id;
+    public DonoImovelM(String nomeCompleto, String cpfCnpj, String rgIe, String telefone, String email, String endereco, String banco, String agencia, String conta, String tipoConta) {
         this.nomeCompleto = nomeCompleto;
         this.cpfCnpj = cpfCnpj;
         this.rgIe = rgIe;
@@ -25,14 +23,6 @@ public class DonoImovelM {
         this.agencia = agencia;
         this.conta = conta;
         this.tipoConta = tipoConta;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNomeCompleto() {
@@ -115,4 +105,6 @@ public class DonoImovelM {
         this.tipoConta = tipoConta;
     }
 
+    
+    
 }

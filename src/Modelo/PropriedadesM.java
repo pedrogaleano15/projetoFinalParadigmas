@@ -1,7 +1,6 @@
 package Modelo;
 
 public class PropriedadesM {
-    private int id;
     private int idDono;
     private String endereco;
     private String tipoImovel;
@@ -12,8 +11,7 @@ public class PropriedadesM {
     private int vagasGaragem;
     private boolean disponivel; 
 
-    public PropriedadesM(int id, int idDono, String endereco, String tipoImovel, double valorAluguel, double area, int quartos, int banheiros, int vagasGaragem, boolean disponivel) {
-        this.id = id;
+    public PropriedadesM(int idDono, String endereco, String tipoImovel, double valorAluguel, double area, int quartos, int banheiros, int vagasGaragem, boolean disponivel) {
         this.idDono = idDono;
         this.endereco = endereco;
         this.tipoImovel = tipoImovel;
@@ -23,14 +21,6 @@ public class PropriedadesM {
         this.banheiros = banheiros;
         this.vagasGaragem = vagasGaragem;
         this.disponivel = disponivel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getIdDono() {
@@ -104,6 +94,6 @@ public class PropriedadesM {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
-    
 
+    
 }

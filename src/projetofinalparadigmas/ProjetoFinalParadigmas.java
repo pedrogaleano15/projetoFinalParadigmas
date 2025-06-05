@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package projetofinalparadigmas;
-
+import Visao.PrincipalV;
 /**
  *
  * @author User
@@ -14,7 +14,8 @@ public class ProjetoFinalParadigmas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        PrincipalV tela1=new PrincipalV();
+        tela1.show();
     }
     
 }
