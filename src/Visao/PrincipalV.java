@@ -45,7 +45,7 @@ public class PrincipalV extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 388, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -55,12 +55,27 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenu1.setText("Cadastro");
 
         jMenuItem1.setText("Cadastrar Inqulino");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarinquilino(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Cadastro Dono Imovel");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroDonoImovel(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Cadastro Propriedade");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroPropriedade(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -70,7 +85,7 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenuItem4.setText("Login");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TelaLogin(evt);
+                telalogin(evt);
             }
         });
         jMenu2.add(jMenuItem4);
@@ -96,7 +111,10 @@ public class PrincipalV extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +124,70 @@ public class PrincipalV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TelaLogin(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelaLogin
+    private void cadastrarinquilino(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarinquilino
+        try {
+        // Cria uma nova instância da tela de login
+            CadastroInquilinoV telaCadInquilino = new CadastroInquilinoV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaCadInquilino);
+        
+        
+        
+        // Torna a tela visível
+        telaCadInquilino.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Cadastro de Dono do imovel " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_cadastrarinquilino
+
+    private void cadastroDonoImovel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroDonoImovel
+        try {
+        // Cria uma nova instância da tela de login
+            cadastroDonoV telaCadDono = new cadastroDonoV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaCadDono);
+        
+        
+        
+        // Torna a tela visível
+        telaCadDono.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Cadastro de Dono do imovel " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_cadastroDonoImovel
+
+    private void CadastroPropriedade(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroPropriedade
+        try {
+        // Cria uma nova instância da tela de login
+            TelaCadastroPropriedadeV telaCadPropriedade = new TelaCadastroPropriedadeV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaCadPropriedade);
+        
+        
+        
+        // Torna a tela visível
+        telaCadPropriedade.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Cadastro de Propriedade " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_CadastroPropriedade
+
+    private void telalogin(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telalogin
         try {
         // Cria uma nova instância da tela de login
         TelalogarV telaLogin = new TelalogarV();
@@ -124,7 +205,8 @@ public class PrincipalV extends javax.swing.JFrame {
             "Erro ao abrir tela de login: " + e.getMessage(), 
             "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_TelaLogin
+
+    }//GEN-LAST:event_telalogin
 
     /**
      * @param args the command line arguments
