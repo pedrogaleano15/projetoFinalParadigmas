@@ -29,7 +29,8 @@ public class Database {
        {
         Class.forName("org.postgresql.Driver");
         conn = DriverManager.getConnection(
-               "jdbc:postgresql://localhost:1234/ProjetoFinal","postgres", "1234");
+               "jdbc:postgresql://localhost:5432/ProjetoFinal","postgres", "1234");
+        conn.setAutoCommit(true); 
         System.out.println("Conectado ao PostGreSQL.");        
         }catch(Exception e){
             System.out.println("Falha ao tentar a conexão");
