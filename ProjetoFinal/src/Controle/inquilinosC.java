@@ -11,21 +11,50 @@ public class inquilinosC {
     
     // Inserir novo inquilino
     public void inserirInquilino(informacoesPessoais inquilino) {
-        try {
-            BD.conexao();
-            String SQL = "INSERT INTO Inquilinos (nome_completo, cpf, rg, data_nascimento, telefone, "
-                       + "email, profissao, renda_mensal, estado_civil) VALUES ('" 
-                       + inquilino.getNomeCompleto() + "','" + inquilino.getCPF()+ "','" 
-                       + inquilino.getRG()+ "','" + inquilino.getDataDeNascimento()+ "','" 
-                       + inquilino.getTelefone() + "','" + inquilino.getEmail() + "','" 
-                       + inquilino.getProfissao() + "'," + inquilino.getRendaMensal() + ",'" 
-                       + inquilino.getEstadoCivil() + "')";
-            BD.getStatement().execute(SQL);
-            BD.desconectar();
-        } catch(Exception e) {
-            System.out.println("Erro ao inserir inquilino");
-            e.printStackTrace();
+         try {
+        BD.conexao();
+
+        // Corrigir data (esperado: yyyy-MM-dd)
+        String data = inquilino.getDataDeNascimento();
+        String dataFormatada = null;
+
+        if (data != null && !data.isEmpty()) {
+            data = data.replaceAll("[^0-9]", ""); // remove caracteres não numéricos
+            if (data.length() == 8) { // Ex: 01012000
+                dataFormatada = data.substring(4, 8) + "-" + data.substring(2, 4) + "-" + data.substring(0, 2);
+            } else {
+                dataFormatada = "2000-01-01"; // fallback padrão
+            }
+        } else {
+            dataFormatada = "2000-01-01"; // se em branco
         }
+
+        // Protege valores null ou campos vazios
+        String nome = inquilino.getNomeCompleto() == null ? "" : inquilino.getNomeCompleto().replace("'", "''");
+        String cpf = inquilino.getCPF() == null ? "" : inquilino.getCPF();
+        String rg = inquilino.getRG() == null ? "" : inquilino.getRG();
+        String telefone = inquilino.getTelefone() == null ? "" : inquilino.getTelefone();
+        String email = inquilino.getEmail() == null ? "" : inquilino.getEmail().replace("'", "''");
+        String profissao = inquilino.getProfissao() == null ? "" : inquilino.getProfissao().replace("'", "''");
+        String estadoCivil = inquilino.getEstadoCivil() == null ? "" : inquilino.getEstadoCivil();
+        float renda = inquilino.getRendaMensal();
+
+        // Monta SQL
+        String SQL = "INSERT INTO Inquilinos (nome_completo, cpf, rg, data_nascimento, telefone, email, profissao, renda_mensal, estado_civil) VALUES ('"
+                   + nome + "','" + cpf + "','" + rg + "','" + dataFormatada + "','" + telefone + "','"
+                   + email + "','" + profissao + "'," + renda + ",'" + estadoCivil + "')";
+
+        // Debug: imprime a query no console
+        System.out.println("SQL gerado:\n" + SQL);
+
+        // Executa e desconecta
+        BD.getStatement().execute(SQL);
+        BD.desconectar();
+
+    } catch (Exception e) {
+        System.out.println("Erro ao inserir inquilino:");
+        e.printStackTrace();
+    }
     }
     
     // Atualizar inquilino

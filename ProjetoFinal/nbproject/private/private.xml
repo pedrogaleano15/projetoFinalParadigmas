@@ -3,25 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Visao/CadastroInquilinoV.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Modelo/PropriedadesM.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Controle/Database.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Visao/TelaCadastroPropriedadeV.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Modelo/informacoesPessoais.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/projetofinalparadigmas/ProjetoFinalParadigmas.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Visao/PrincipalV.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Controle/DonosC.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Visao/TelalogarV.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Visao/cadastroDonoV.java</file>
-            <file>file:/C:/Users/Celso/OneDrive/Área%20de%20Trabalho/ALEX/projetoFinalParadigmas/ProjetoFinal/src/Controle/inquilinosC.java</file>
-=======
             <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/ListadeInquilinoV.java</file>
             <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/ListadeDonoImovelV.java</file>
             <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/PrincipalV.java</file>
             <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/ListadePropriedadeV.java</file>
             <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/ListadeContratos.java</file>
->>>>>>> f830d8f2afe55e3ca915b7ebf36350cc452d193f
+            <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/cadastroDonoV.java</file>
+            <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/telalogininquilinoV.java</file>
+            <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Visao/CadastroInquilinoV.java</file>
+            <file>file:/C:/Users/User/Desktop/alexandro/projetoFinalParadigmas/ProjetoFinal/src/Modelo/informacoesPessoais.java</file>
         </group>
     </open-files>
 </project-private>

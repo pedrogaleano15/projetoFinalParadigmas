@@ -11,24 +11,7 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class CadastroInquilinoV extends javax.swing.JInternalFrame {
-public class Inquilino {
-    private String nomeCompleto;
-    private String cpf;
-    private String rg;
-    private String dataNascimento;
-    private String telefone;
-    private String email;
-    private String profissao;
-    private String rendaMensal;
-    private String estadoCivil;
 
-    // Getters e setters aqui
-    // Exemplo:
-    public String getNomeCompleto() { return nomeCompleto; }
-    public void setNomeCompleto(String nomeCompleto) { this.nomeCompleto = nomeCompleto; }
-
-    // Repete para os demais campos...
-}
 
     /**
      * Creates new form CadastroInquilino
@@ -46,7 +29,6 @@ public class Inquilino {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -69,8 +51,6 @@ public class Inquilino {
         jTEstadoCivil = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
-
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -84,7 +64,7 @@ public class Inquilino {
 
         jLabel9.setText("Profissao:");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Cadastrar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrarinquilino(evt);
@@ -147,51 +127,52 @@ public class Inquilino {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(jButton2))
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTDatadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTDatadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 56, Short.MAX_VALUE))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel10)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel10))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -236,8 +217,8 @@ public class Inquilino {
                     .addComponent(jLabel8)
                     .addComponent(jTEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(44, 44, 44))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,80 +242,71 @@ public class Inquilino {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarinquilino(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarinquilino
-    try {
+       try {
+        // 1. Obter os valores
         String nomeCompleto = jTNomeCompleto.getText().trim();
-        String cpf = jTCPF.getText().trim();
-        String rg = jTRG.getText().trim();
-        String dataNascimentoStr = jTDatadeNascimento.getText().trim();  // Vai ler, mas não usar ainda
-        String telefoneStr = jTTelefone.getText().trim();
+        String cpf = jTCPF.getText().trim().replaceAll("[^0-9]", "");
+        String rg = jTRG.getText().trim().replaceAll("[^0-9]", "");
+        String dataNasc = jTDatadeNascimento.getText().trim();
+        String telefone = jTTelefone.getText().trim().replaceAll("[^0-9]", "");
         String email = jTEmail.getText().trim();
         String profissao = jTProfissao.getText().trim();
-        String rendaMensalStr = jTRendaMensal.getText().trim();
+        String rendaStr = jTRendaMensal.getText().trim().replace(",", ".");
         String estadoCivil = jTEstadoCivil.getText().trim();
 
-        int telefone = Integer.parseInt(telefoneStr);
-        float rendaMensal = Float.parseFloat(rendaMensalStr);
-
-        if (nomeCompleto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe o nome completo!", "Aviso", JOptionPane.WARNING_MESSAGE);
-            jTNomeCompleto.requestFocus();
+        // 2. Validações
+        if (nomeCompleto.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome, CPF e Telefone são obrigatórios!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe o CPF!", "Aviso", JOptionPane.WARNING_MESSAGE);
-            jTCPF.requestFocus();
+        if (cpf.length() != 11) {
+            JOptionPane.showMessageDialog(this, "CPF deve conter 11 dígitos!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (telefoneStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Informe o telefone!", "Aviso", JOptionPane.WARNING_MESSAGE);
-            jTTelefone.requestFocus();
+        if (telefone.length() < 10) {
+            JOptionPane.showMessageDialog(this, "Telefone inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Valida o campo de data, mas não passa pro objeto (compatível com seu código atual)
-        if (!dataNascimentoStr.isEmpty()) {
-            try {
-                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                java.time.LocalDate localDate = java.time.LocalDate.parse(dataNascimentoStr, formatter);
-                // Se chegou aqui, a data é válida
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Data de nascimento inválida! Use o formato dd/MM/yyyy.", "Erro", JOptionPane.ERROR_MESSAGE);
-                jTDatadeNascimento.requestFocus();
-                return;
-            }
+        // 3. Conversão segura
+        float renda = 0;
+        try {
+            renda = Float.parseFloat(rendaStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Renda inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
+        // 4. Criar objeto
         informacoesPessoais inquilino = new informacoesPessoais(
             nomeCompleto,
-            telefone,
-            0,
-            0,
-            0,
             cpf,
             rg,
-            rendaMensal,
+            dataNasc,
+            telefone,
+            email,
+            profissao,
+            renda,
             estadoCivil
-            // Não passa dataNascimento porque sua classe não aceita
         );
 
+        // 5. Chamar o controle
         inquilinosC controle = new inquilinosC();
         controle.inserirInquilino(inquilino);
 
-        JOptionPane.showMessageDialog(this, "Inquilino cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Inquilino cadastrado com sucesso!");
 
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Erro nos campos numéricos: Telefone deve ser número inteiro e Renda Mensal deve ser decimal", "Erro", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
     }
+
     }//GEN-LAST:event_cadastrarinquilino
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

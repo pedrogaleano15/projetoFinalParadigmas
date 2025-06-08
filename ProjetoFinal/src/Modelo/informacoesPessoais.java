@@ -11,16 +11,16 @@ package Modelo;
 public class informacoesPessoais {
 
     private String NomeCompleto;
-    private int CPF;
-    private int RG;
-    private int DataDeNascimento;
-    private int telefone;
+    private String CPF;
+    private String RG;
+    private String DataDeNascimento;
+    private String telefone;
     private String email;
     private String profissao;
     private float rendaMensal;
     private String estadoCivil;
 
-    public informacoesPessoais(String NomeCompleto, int CPF, int RG, int DataDeNascimento, int telefone, String email, String profissao, float rendaMensal, String estadoCivil) {
+    public informacoesPessoais(String NomeCompleto, String CPF, String RG, String DataDeNascimento, String telefone, String email, String profissao, float rendaMensal, String estadoCivil) {
         this.NomeCompleto = NomeCompleto;
         this.CPF = CPF;
         this.RG = RG;
@@ -40,35 +40,35 @@ public class informacoesPessoais {
         this.NomeCompleto = NomeCompleto;
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(int CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 
-    public int getRG() {
+    public String getRG() {
         return RG;
     }
 
-    public void setRG(int RG) {
+    public void setRG(String RG) {
         this.RG = RG;
     }
 
-    public int getDataDeNascimento() {
+    public String getDataDeNascimento() {
         return DataDeNascimento;
     }
 
-    public void setDataDeNascimento(int DataDeNascimento) {
+    public void setDataDeNascimento(String DataDeNascimento) {
         this.DataDeNascimento = DataDeNascimento;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -104,4 +104,5 @@ public class informacoesPessoais {
         this.estadoCivil = estadoCivil;
     }
 
+  
 }

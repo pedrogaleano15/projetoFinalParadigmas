@@ -98,7 +98,7 @@ public cadastroDonoV() {
 
         jLabel11.setText("Tipo de conta:");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Cadastrar Dono");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastrardono(evt);
