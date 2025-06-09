@@ -32,6 +32,7 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -82,6 +83,9 @@ public class PrincipalV extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem12.setText("jMenuItem12");
+        jMenu1.add(jMenuItem12);
 
         jMenuBar1.add(jMenu1);
 
@@ -137,6 +141,11 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenu4.add(jMenuItem10);
 
         jMenuItem11.setText("Lista de contratos");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListadeContratos(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
 
         jMenuBar1.add(jMenu4);
@@ -305,6 +314,26 @@ public class PrincipalV extends javax.swing.JFrame {
     }   
     }//GEN-LAST:event_ListadePropriedade
 
+    private void ListadeContratos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListadeContratos
+       try {
+        // Cria uma nova instância da tela de login
+            ListadeContratos listacontrato = new ListadeContratos();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(listacontrato);
+        
+        
+        
+        // Torna a tela visível
+        listacontrato.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de lista Contratos: " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } 
+    }//GEN-LAST:event_ListadeContratos
+
     /**
      * @param args the command line arguments
      */
@@ -350,6 +379,7 @@ public class PrincipalV extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -2,19 +2,94 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
+
 package Visao;
 
-/**package
- *
- * @author User
- */
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import Controle.ContratosC;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
+
 public class ListadeContratos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListadeContratos
-     */
+    private javax.swing.JTable JListaContratos;
+    private DefaultTableModel ListaContratos;
+
     public ListadeContratos() {
         initComponents();
+        
+        // Configuração do modelo da tabela
+        ListaContratos = new DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "ID", "Inquilino", "Propriedade", "Data Início", 
+                "Data Fim", "Valor Aluguel", "Dia Vencimento", "Ativo"
+            }
+        ) {
+            Class[] types = new Class[]{
+                Integer.class, String.class, String.class, 
+                String.class, String.class, Double.class, 
+                Integer.class, Boolean.class
+            };
+            
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+
+        JListaContratos = new javax.swing.JTable(ListaContratos);
+        jScrollPane1.setViewportView(JListaContratos);
+    
+        carregarDados();
+    }
+
+    private void carregarDados() {
+        ContratosC dados = new ContratosC();
+        ResultSet listaContratos = null;
+        
+        try {
+            listaContratos = dados.consultarTodosContratos();
+            int j = 0;
+            
+            while(listaContratos.next()) {
+                ListaContratos.setRowCount(j+1);
+                
+                for(int i = 1; i <= 8; i++) {
+                    if(i == 8) { // Coluna "Ativo" (booleana)
+                        JListaContratos.setValueAt(listaContratos.getBoolean(i), j, i-1);
+                    }
+                    else if(i == 1) { // Coluna "ID" (inteiro)
+                        JListaContratos.setValueAt(listaContratos.getInt(i), j, i-1);
+                    }
+                    else if(i == 6) { // Coluna "Valor Aluguel" (double)
+                        JListaContratos.setValueAt(listaContratos.getDouble(i), j, i-1);
+                    }
+                    else if(i == 7) { // Coluna "Dia Vencimento" (inteiro)
+                        JListaContratos.setValueAt(listaContratos.getInt(i), j, i-1);
+                    }
+                    else { // Demais colunas (strings)
+                        JListaContratos.setValueAt(listaContratos.getString(i), j, i-1);
+                    }
+                }
+                j++;
+            }
+        } catch(Exception er) {
+            er.printStackTrace();
+            JOptionPane.showMessageDialog(this, 
+                "Erro ao carregar contratos: " + er.getMessage(),
+                "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            if(listaContratos != null) {
+                try {
+                    listaContratos.close();
+                } catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**

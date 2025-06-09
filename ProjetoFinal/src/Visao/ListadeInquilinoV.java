@@ -5,53 +5,91 @@
 package Visao;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Controle.inquilinosC;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 public class ListadeInquilinoV extends javax.swing.JInternalFrame {
 
-private JTable JListaInquilino;
-private DefaultTableModel ListaInquilino;
-
+    private javax.swing.JTable JListaInquilino;
+    private DefaultTableModel ListaInquilino;
 
     public ListadeInquilinoV() {
         initComponents();
-        ListaInquilino = new DefaultTableModel(
-        new Object [][] {},
-        new String [] {"ID", 
-        "Nome Completo", 
-        "CPF", 
-        "RG", 
-        "Data Nascimento", 
-        "Telefone", 
-        "Email", 
-        "Profissão", 
-        "Renda Mensal", 
-        "Estado Civil", 
-        "Data Cadastro", 
-        "Ativo"}
-    ) {
-        Class[] types = new Class[]{
-        java.lang.Integer.class,   // ID
-        java.lang.String.class,    // Nome
-        java.lang.String.class,    // CPF
-        java.lang.String.class,    // RG
-        java.lang.String.class,    // Data Nascimento (ou Date.class se preferir)
-        java.lang.String.class,    // Telefone
-        java.lang.String.class,    // Email
-        java.lang.String.class,    // Profissão
-        java.lang.Double.class,    // Renda Mensal
-        java.lang.String.class,    // Estado Civil
-        java.lang.String.class,    // Data Cadastro (ou Date.class)
-        java.lang.Boolean.class    // Ativo
-        };
         
-        public Class getColumnClass(int columnIndex) {
-            return types [columnIndex];
-        }
-    };
-JListaInquilino = new javax.swing.JTable(ListaInquilino);
-jScrollPane1.setViewportView(JListaInquilino);
-    }
+        // Configuração do modelo da tabela
+        ListaInquilino = new DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "ID", "Nome Completo", "CPF", "RG", 
+                "Data Nascimento", "Telefone", "Email", 
+                "Profissão", "Renda Mensal", "Estado Civil", 
+                "Data Cadastro", "Ativo"
+            }
+        ) {
+            Class[] types = new Class[]{
+                Integer.class, String.class, String.class, 
+                String.class, String.class, String.class, 
+                String.class, String.class, Double.class, 
+                String.class, String.class, Boolean.class
+            };
+            
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+
+        JListaInquilino = new javax.swing.JTable(ListaInquilino);
+        jScrollPane1.setViewportView(JListaInquilino);
     
+        carregarDados();
+    }
+
+    private void carregarDados() {
+        inquilinosC dados = new inquilinosC();
+        ResultSet listaInquilinos = null;
+        
+        try {
+    listaInquilinos = dados.consultarTodosInquilinos();
+    // Contador de linhas da JTable
+    int j = 0;
+    
+    while(listaInquilinos.next()) {
+        ListaInquilino.setRowCount(j+1);
+        
+        for(int i = 1; i <= 12; i++) {
+            if(i == 12) { // Coluna "Ativo" (booleana)
+                JListaInquilino.setValueAt(listaInquilinos.getBoolean(i), j, i-1);
+            }
+            else if(i == 1) { // Coluna "ID" (inteiro)
+                JListaInquilino.setValueAt(listaInquilinos.getInt(i), j, i-1);
+            }
+            else if(i == 9) { // Coluna "Renda Mensal" (double)
+                JListaInquilino.setValueAt(listaInquilinos.getDouble(i), j, i-1);
+            }
+            else { // Demais colunas (strings)
+                JListaInquilino.setValueAt(listaInquilinos.getString(i), j, i-1);
+            }
+        }
+        j++;
+    }
+} catch(Exception er) {
+    er.printStackTrace();
+    JOptionPane.showMessageDialog(this, 
+        "Erro ao carregar dados: " + er.getMessage(),
+        "Erro", JOptionPane.ERROR_MESSAGE);
+} finally {
+    if(listaInquilinos != null) {
+        try {
+            listaInquilinos.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+    }
 
 
     /**

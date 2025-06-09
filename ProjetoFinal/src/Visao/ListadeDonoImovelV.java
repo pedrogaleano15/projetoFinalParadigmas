@@ -6,62 +6,87 @@ package Visao;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Controle.DonosC;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
-/**
- *
- * @author User
- */
 public class ListadeDonoImovelV extends javax.swing.JInternalFrame {
 
-    private JTable JListaDonoImovel;
+    private javax.swing.JTable JListaDonoImovel;
     private DefaultTableModel ListaDonoImovel;
 
-    /**
-     * Creates new form ListadeDonoImovelV
-     */
     public ListadeDonoImovelV() {
         initComponents();
+        
         ListaDonoImovel = new DefaultTableModel(
-                new Object[][]{},
-                new String[]{
-                    "ID",
-                    "Nome Completo",
-                    "CPF",
-                    "RG",
-                    "Telefone",
-                    "Email",
-                    "Endereco",
-                    "Banco",
-                    "Agencia",
-                    "Conta",
-                    "Tipo de conta",
-                    "Data de cadastro",
-                    "Ativo"
-                }
+            new Object[][]{},
+            new String[]{
+                "ID", "Nome Completo", "CPF/CNPJ", "RG/IE", 
+                "Telefone", "Email", "Endereço", "Banco", 
+                "Agência", "Conta", "Tipo Conta", "Data Cadastro", "Ativo"
+            }
         ) {
             Class[] types = new Class[]{
-                java.lang.Integer.class, // ID
-                java.lang.String.class, // Nome
-                java.lang.String.class, // CPF/CNPJ
-                java.lang.String.class, // RG/IE
-                java.lang.String.class, // Telefone
-                java.lang.String.class, // Email
-                java.lang.String.class, // Endereço
-                java.lang.String.class, // Banco
-                java.lang.String.class, // Agência
-                java.lang.String.class, // Conta
-                java.lang.String.class, // Tipo de conta
-                java.lang.String.class, // Data de cadastro
-                java.lang.Boolean.class // Ativo
+                Integer.class, String.class, String.class, 
+                String.class, String.class, String.class, 
+                String.class, String.class, String.class, 
+                String.class, String.class, String.class, 
+                Boolean.class
             };
 
+            @Override
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
         };
+
         JListaDonoImovel = new javax.swing.JTable(ListaDonoImovel);
         jScrollPane1.setViewportView(JListaDonoImovel);
+        
+        carregarDados();
     }
+
+    private void carregarDados() {
+        DonosC dados = new DonosC();
+        ResultSet listaDonos = null;
+        
+        try {
+            listaDonos = dados.consultarTodosDonos();
+            int j = 0;
+            
+            while(listaDonos.next()) {
+                ListaDonoImovel.setRowCount(j+1);
+                
+                for(int i = 1; i <= 13; i++) {
+                    if(i == 13) { // Coluna "Ativo" (booleana)
+                        JListaDonoImovel.setValueAt(listaDonos.getBoolean(i), j, i-1);
+                    }
+                    else if(i == 1) { // Coluna "ID" (inteiro)
+                        JListaDonoImovel.setValueAt(listaDonos.getInt(i), j, i-1);
+                    }
+                    else { // Demais colunas (strings)
+                        JListaDonoImovel.setValueAt(listaDonos.getString(i), j, i-1);
+                    }
+                }
+                j++;
+            }
+        } catch(Exception er) {
+            er.printStackTrace();
+            JOptionPane.showMessageDialog(this, 
+                "Erro ao carregar donos: " + er.getMessage(),
+                "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            if(listaDonos != null) {
+                try {
+                    listaDonos.close();
+                } catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

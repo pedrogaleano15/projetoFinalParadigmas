@@ -4,7 +4,12 @@
  */
 package Visao;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Controle.PropriedadesC;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
 
 public class ListadePropriedadeV extends javax.swing.JInternalFrame {
 
@@ -17,31 +22,16 @@ public class ListadePropriedadeV extends javax.swing.JInternalFrame {
         ListaPropriedade = new DefaultTableModel(
             new Object[][]{},
             new String[]{
-                "ID", 
-                "Proprietário", 
-                "Endereço", 
-                "Tipo", 
-                "Valor Aluguel", 
-                "Área (m²)", 
-                "Quartos", 
-                "Banheiros", 
-                "Vagas", 
-                "Data Cadastro", 
-                "Disponível"
+                "ID", "Proprietário", "Endereço", "Tipo", 
+                "Valor Aluguel", "Área (m²)", "Quartos", 
+                "Banheiros", "Vagas", "Data Cadastro", "Disponível"
             }
         ) {
             Class[] types = new Class[]{
-                java.lang.Integer.class,   // ID
-                java.lang.String.class,    // Proprietário
-                java.lang.String.class,   // Endereço
-                java.lang.String.class,    // Tipo
-                java.lang.Double.class,    // Valor Aluguel
-                java.lang.Double.class,    // Área
-                java.lang.Integer.class,   // Quartos
-                java.lang.Integer.class,   // Banheiros
-                java.lang.Integer.class,   // Vagas
-                java.lang.String.class,    // Data Cadastro
-                java.lang.Boolean.class    // Disponível
+                Integer.class, String.class, String.class, 
+                String.class, Double.class, Double.class, 
+                Integer.class, Integer.class, Integer.class, 
+                String.class, Boolean.class
             };
             
             @Override
@@ -51,17 +41,68 @@ public class ListadePropriedadeV extends javax.swing.JInternalFrame {
             
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Torna a tabela não editável
+                return false;
             }
         };
         
         JListaPropriedade = new javax.swing.JTable(ListaPropriedade);
-        
-        // Configurações adicionais da tabela
         JListaPropriedade.setAutoCreateRowSorter(true);
         JListaPropriedade.getTableHeader().setReorderingAllowed(false);
         
         jScrollPane1.setViewportView(JListaPropriedade);
+        
+        carregarDados();
+    }
+
+    private void carregarDados() {
+        PropriedadesC dados = new PropriedadesC();
+        ResultSet listaPropriedades = null;
+        
+        try {
+            listaPropriedades = dados.consultarTodasPropriedades();
+            int j = 0;
+            
+            while(listaPropriedades.next()) {
+                ListaPropriedade.setRowCount(j+1);
+                
+                for(int i = 1; i <= 11; i++) {
+                    if(i == 11) { // Coluna "Disponível" (booleana)
+                        JListaPropriedade.setValueAt(listaPropriedades.getBoolean(i), j, i-1);
+                    }
+                    else if(i == 1) { // Coluna "ID" (inteiro)
+                        JListaPropriedade.setValueAt(listaPropriedades.getInt(i), j, i-1);
+                    }
+                    else if(i == 5 || i == 6 || i == 7 || i == 8) { // Colunas numéricas
+                        if(i == 5) { // Valor Aluguel
+                            JListaPropriedade.setValueAt(listaPropriedades.getDouble(i), j, i-1);
+                        }
+                        else if(i == 6) { // Área
+                            JListaPropriedade.setValueAt(listaPropriedades.getDouble(i), j, i-1);
+                        }
+                        else { // Quartos, Banheiros, Vagas
+                            JListaPropriedade.setValueAt(listaPropriedades.getInt(i), j, i-1);
+                        }
+                    }
+                    else { // Demais colunas (strings)
+                        JListaPropriedade.setValueAt(listaPropriedades.getString(i), j, i-1);
+                    }
+                }
+                j++;
+            }
+        } catch(Exception er) {
+            er.printStackTrace();
+            JOptionPane.showMessageDialog(this, 
+                "Erro ao carregar propriedades: " + er.getMessage(),
+                "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            if(listaPropriedades != null) {
+                try {
+                    listaPropriedades.close();
+                } catch(SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
