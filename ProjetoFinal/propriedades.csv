@@ -1,0 +1,2 @@
+id_propriedade,id_dono,endereco,tipo_imovel,valor_aluguel,area,quartos,banheiros,vagas_garagem,data_cadastro,disponivel
+1,1,rua armando silva,apartamento,15000.00,1200.00,5,12,7,2025-06-15 16:17:20.275436,t

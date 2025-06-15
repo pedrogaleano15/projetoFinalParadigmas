@@ -1,9 +1,3 @@
-create table loginquilino (
-login varchar(50),
-senha varchar(50)
-REFERENCES
-
-)
 
 
 

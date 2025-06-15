@@ -32,13 +32,14 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        CadastroDeContrato = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -84,8 +85,13 @@ public class PrincipalV extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
-        jMenuItem12.setText("jMenuItem12");
-        jMenu1.add(jMenuItem12);
+        CadastroDeContrato.setText("Cadastro de Contrato");
+        CadastroDeContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TelaCadastroContrato(evt);
+            }
+        });
+        jMenu1.add(CadastroDeContrato);
 
         jMenuBar1.add(jMenu1);
 
@@ -103,14 +109,17 @@ public class PrincipalV extends javax.swing.JFrame {
 
         jMenu3.setText("Atualizar");
 
-        jMenuItem5.setText("jMenuItem5");
+        jMenuItem5.setText("Atualizar Inquilino");
         jMenu3.add(jMenuItem5);
 
-        jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.setText("Atualizar Dono Imovel");
         jMenu3.add(jMenuItem6);
 
-        jMenuItem7.setText("jMenuItem7");
+        jMenuItem7.setText("Atualizar Propriedades");
         jMenu3.add(jMenuItem7);
+
+        jMenuItem12.setText("Atualizar Contrato");
+        jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
 
@@ -334,6 +343,27 @@ public class PrincipalV extends javax.swing.JFrame {
     } 
     }//GEN-LAST:event_ListadeContratos
 
+    private void TelaCadastroContrato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelaCadastroContrato
+ try {
+        // Cria uma nova instância da tela de login
+            CadastroDeContratoV telaCadContrato = new CadastroDeContratoV();
+            
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaCadContrato);
+        
+        
+        
+        // Torna a tela visível
+        telaCadContrato.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Cadastro de Contrato " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_TelaCadastroContrato
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +400,7 @@ public class PrincipalV extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CadastroDeContrato;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
