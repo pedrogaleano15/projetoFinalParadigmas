@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controle;
 
 import Modelo.ContratoM;
@@ -13,12 +9,15 @@ public class ContratosC {
     public ResultSet dadosConsulta;
 
     // Inserir novo contrato
-    public void inserirContrato(ContratoM contrato) {
+   public void inserirContrato(ContratoM contrato) {
         try {
             BD.conexao();
-            String SQL = "INSERT INTO Contratos (data_inicio, data_fim, valor, id_inquilino, id_imovel) VALUES ('"
-                       + contrato.getDataInicio() + "','" + contrato.getDataFim() + "','" + contrato.getValor() + "','"
-                       + contrato.getIdInquilino() + "','" + contrato.getIdImovel() + "')";
+            String SQL = "INSERT INTO Contratos (data_inicio, data_fim, valor, id_inquilino, id_propriedade, dia_vencimento) VALUES ('"
+                       + contrato.getDataInicio() + "','" + contrato.getDataFim() + "'," 
+                       + contrato.getValor() + "," + contrato.getIdInquilino() + "," 
+                       + contrato.getIdPropriedade() + "," + contrato.getDiaVencimento() + ")";
+            
+            System.out.println("Executando SQL: " + SQL); // Para debug
             BD.getStatement().execute(SQL);
             BD.desconectar();
         } catch(Exception e) {
@@ -33,10 +32,12 @@ public class ContratosC {
             BD.conexao();
             String SQL = "UPDATE Contratos SET data_inicio='" + contrato.getDataInicio()
                        + "', data_fim='" + contrato.getDataFim()
-                       + "', valor='" + contrato.getValor()
-                       + "', id_inquilino='" + contrato.getIdInquilino()
-                       + "', id_imovel='" + contrato.getIdImovel()
-                       + "' WHERE id_contrato=" + id;
+                       + "', valor=" + contrato.getValor()
+                       + ", id_inquilino=" + contrato.getIdInquilino()
+                       + ", id_propriedade=" + contrato.getIdPropriedade()
+                       + ", dia_vencimento=" + contrato.getDiaVencimento()
+                       + " WHERE id_contrato=" + id;
+            
             BD.getStatement().execute(SQL);
             BD.desconectar();
         } catch(Exception e) {

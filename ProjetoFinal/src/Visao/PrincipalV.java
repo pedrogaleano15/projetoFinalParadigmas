@@ -33,8 +33,6 @@ public class PrincipalV extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         CadastroDeContrato = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -95,30 +93,38 @@ public class PrincipalV extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Login");
-
-        jMenuItem4.setText("Login");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telalogin(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu2);
-
         jMenu3.setText("Atualizar");
 
         jMenuItem5.setText("Atualizar Inquilino");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarinquilino(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Atualizar Dono Imovel");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarDonoimovel(evt);
+            }
+        });
         jMenu3.add(jMenuItem6);
 
         jMenuItem7.setText("Atualizar Propriedades");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarPropriedades(evt);
+            }
+        });
         jMenu3.add(jMenuItem7);
 
         jMenuItem12.setText("Atualizar Contrato");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarContrato(evt);
+            }
+        });
         jMenu3.add(jMenuItem12);
 
         jMenuBar1.add(jMenu3);
@@ -241,27 +247,6 @@ public class PrincipalV extends javax.swing.JFrame {
 
     }//GEN-LAST:event_CadastroPropriedade
 
-    private void telalogin(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telalogin
-        try {
-        // Cria uma nova instância da tela de login
-        TelalogarV telaLogin = new TelalogarV();
-        
-        // Adiciona a tela ao JDesktopPane
-        jDesktopPane1.add(telaLogin);
-        
-        
-        
-        // Torna a tela visível
-        telaLogin.setVisible(true);
-        
-    } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Erro ao abrir tela de login: " + e.getMessage(), 
-            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
-
-    }//GEN-LAST:event_telalogin
-
     private void ListaInquilino(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaInquilino
        try {
         // Cria uma nova instância da tela de login
@@ -364,6 +349,75 @@ public class PrincipalV extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_TelaCadastroContrato
 
+    private void atualizarinquilino(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarinquilino
+    try {
+        // Cria uma nova instância da tela de atualização de inquilino
+        AtualizarInquilinoV telaAtualizarInquilino = new AtualizarInquilinoV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaAtualizarInquilino);
+        
+        // Torna a tela visível
+        telaAtualizarInquilino.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Atualização de Inquilino: " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_atualizarinquilino
+
+    private void atualizarDonoimovel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarDonoimovel
+try {
+        // Cria uma nova instância da tela de atualização de dono
+        AtualizarDonoImovelV telaAtualizarDono = new AtualizarDonoImovelV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaAtualizarDono);
+        
+        // Torna a tela visível
+        telaAtualizarDono.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Atualização de Dono de Imóvel: " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }    }//GEN-LAST:event_atualizarDonoimovel
+
+    private void atualizarPropriedades(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarPropriedades
+try {
+        // Cria uma nova instância da tela de atualização de propriedade
+        AtualizarPropriedadeV telaAtualizarPropriedade = new AtualizarPropriedadeV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaAtualizarPropriedade);
+        
+        // Torna a tela visível
+        telaAtualizarPropriedade.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Atualização de Propriedade: " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }    }//GEN-LAST:event_atualizarPropriedades
+
+    private void atualizarContrato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarContrato
+try {
+        // Cria uma nova instância da tela de atualização de contrato
+        AtualizarContratoV telaAtualizarContrato = new AtualizarContratoV();
+        
+        // Adiciona a tela ao JDesktopPane
+        jDesktopPane1.add(telaAtualizarContrato);
+        
+        // Torna a tela visível
+        telaAtualizarContrato.setVisible(true);
+        
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Erro ao abrir tela de Atualização de Contrato: " + e.getMessage(), 
+            "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }    }//GEN-LAST:event_atualizarContrato
+
     /**
      * @param args the command line arguments
      */
@@ -403,7 +457,6 @@ public class PrincipalV extends javax.swing.JFrame {
     private javax.swing.JMenuItem CadastroDeContrato;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -413,7 +466,6 @@ public class PrincipalV extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

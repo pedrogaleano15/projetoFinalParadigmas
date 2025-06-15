@@ -3,12 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package Visao;
-
+import Controle.PropriedadesC;
+import Modelo.PropriedadesM;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 /**
  *
  * @author User
  */
 public class AtualizarPropriedadeV extends javax.swing.JInternalFrame {
+    private PropriedadesC controlador = new PropriedadesC();
+    private int idPropriedadeAtual;
 
     /**
      * Creates new form AtualizarPropriedadeV
@@ -46,6 +51,11 @@ public class AtualizarPropriedadeV extends javax.swing.JInternalFrame {
         jTIDDono = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel8.setText("Banheiro:");
 
         jLabel3.setText("Endereco:");
@@ -63,6 +73,11 @@ public class AtualizarPropriedadeV extends javax.swing.JInternalFrame {
         jTValordoAluguel.setColumns(10);
 
         jButton1.setText("Atualizar Informacoes Propriedade");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizaPropriedade(evt);
+            }
+        });
 
         jLabel5.setText("Tipo Do Imovel:");
 
@@ -83,6 +98,11 @@ public class AtualizarPropriedadeV extends javax.swing.JInternalFrame {
         jTIDDono.setColumns(10);
 
         jButton2.setText("Buscar Propriedade");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscaPropriedade(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +201,90 @@ public class AtualizarPropriedadeV extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BuscaPropriedade(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscaPropriedade
+  try {
+            String idStr = jTIDDono.getText().trim(); // Adicione um campo jTID se não existir
+            if (idStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Informe o ID da propriedade!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            idPropriedadeAtual = Integer.parseInt(idStr);
+            ResultSet rs = controlador.consultarPropriedade(idPropriedadeAtual);
+            
+            if (rs != null && rs.next()) {
+                jTIDDono.setText(rs.getString("id_dono"));
+                jTEndereco.setText(rs.getString("endereco"));
+                jTTipoDoImovel.setText(rs.getString("tipo_imovel"));
+                jTValordoAluguel.setText(rs.getString("valor_aluguel"));
+                jTArea.setText(rs.getString("area"));
+                jTQuartos.setText(rs.getString("quartos"));
+                jTBanheiro.setText(rs.getString("banheiros"));
+                jTVagaddeGaragem.setText(rs.getString("vagas_garagem"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_BuscaPropriedade
+
+    private void AtualizaPropriedade(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizaPropriedade
+  try {
+        // Obter valores dos campos
+        String idDono = jTIDDono.getText().trim();
+        String endereco = jTEndereco.getText().trim();
+        String tipoImovel = jTTipoDoImovel.getText().trim();
+        String valorAluguel = jTValordoAluguel.getText().trim();
+        String area = jTArea.getText().trim();
+        String quartos = jTQuartos.getText().trim();
+        String banheiros = jTBanheiro.getText().trim();
+        String vagasGaragem = jTVagaddeGaragem.getText().trim();
+
+        // Validações básicas
+        if (endereco.isEmpty() || tipoImovel.isEmpty() || valorAluguel.isEmpty() || 
+            area.isEmpty() || quartos.isEmpty() || banheiros.isEmpty() || 
+            vagasGaragem.isEmpty() || idDono.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Converter valores para os tipos corretos
+            int idDonoInt = Integer.parseInt(idDono);
+            double valorAluguelDouble = Double.parseDouble(valorAluguel);
+            double areaDouble = Double.parseDouble(area);
+            int quartosInt = Integer.parseInt(quartos);
+            int banheirosInt = Integer.parseInt(banheiros);
+            int vagasGaragemInt = Integer.parseInt(vagasGaragem);
+            
+            // Criar objeto - assumindo que a propriedade está disponível (true)
+            // Se precisar definir disponibilidade, adicione um campo no formulário
+            PropriedadesM propriedade = new PropriedadesM(
+                idDonoInt, 
+                endereco, 
+                tipoImovel, 
+                valorAluguelDouble, 
+                areaDouble, 
+                quartosInt, 
+                banheirosInt, 
+                vagasGaragemInt, 
+                true // Valor padrão para disponível
+            );
+
+            // Chamar controle
+            controlador.atualizarPropriedade(idPropriedadeAtual, propriedade);
+            
+            
+                JOptionPane.showMessageDialog(this, "Propriedade atualizada com sucesso!");
+                    } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Valores numéricos inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_AtualizaPropriedade
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

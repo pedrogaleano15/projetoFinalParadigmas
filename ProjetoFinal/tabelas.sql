@@ -1,22 +1,4 @@
-
-
-
-
-CREATE TABLE Inquilinos (
-    id_inquilino SERIAL PRIMARY KEY,
-    nome_completo VARCHAR(100) NOT NULL,
-    cpf VARCHAR(14) UNIQUE NOT NULL,
-    rg VARCHAR(20),
-    data_nascimento DATE,
-    telefone VARCHAR(20) NOT NULL,
-    email VARCHAR(100),
-    profissao VARCHAR(50),
-    renda_mensal DECIMAL(10,2),
-    estado_civil VARCHAR(20),
-    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ativo BOOLEAN DEFAULT TRUE
-);
-
+-- Tabela Donos
 CREATE TABLE Donos (
     id_dono SERIAL PRIMARY KEY,
     nome_completo VARCHAR(100) NOT NULL,
@@ -33,6 +15,23 @@ CREATE TABLE Donos (
     ativo BOOLEAN DEFAULT TRUE
 );
 
+-- Tabela Inquilinos
+CREATE TABLE Inquilinos (
+    id_inquilino SERIAL PRIMARY KEY,
+    nome_completo VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    rg VARCHAR(20),
+    data_nascimento DATE,
+    telefone VARCHAR(20) NOT NULL,
+    email VARCHAR(100),
+    profissao VARCHAR(50),
+    renda_mensal DECIMAL(10,2),
+    estado_civil VARCHAR(20),
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ativo BOOLEAN DEFAULT TRUE
+);
+
+-- Tabela Propriedades
 CREATE TABLE Propriedades (
     id_propriedade SERIAL PRIMARY KEY,
     id_dono INT NOT NULL,
@@ -48,6 +47,7 @@ CREATE TABLE Propriedades (
     FOREIGN KEY (id_dono) REFERENCES Donos(id_dono)
 );
 
+-- Tabela Contratos
 CREATE TABLE Contratos (
     id_contrato SERIAL PRIMARY KEY,
     id_inquilino INT NOT NULL,
@@ -58,10 +58,6 @@ CREATE TABLE Contratos (
     dia_vencimento INT NOT NULL,
     ativo BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (id_inquilino) REFERENCES Inquilinos(id_inquilino),
-    FOREIGN KEY (id_propriedade) REFERENCES Propriedades(id_propriedade)
+    FOREIGN KEY (id_propriedade) REFERENCES Propriedades(id_propriedade),
+    CONSTRAINT check_dia_vencimento CHECK (dia_vencimento BETWEEN 1 AND 31)
 );
-
-
-
-
-

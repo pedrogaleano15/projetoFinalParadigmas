@@ -3,24 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package Visao;
-
 import Controle.ContratosC;
-import Controle.PropriedadesC;
-import Controle.inquilinosC;
 import Modelo.ContratoM;
-import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
-public class CadastroDeContratoV extends javax.swing.JInternalFrame {
+public class AtualizarContratoV extends javax.swing.JInternalFrame {
+private ContratosC controlador = new ContratosC();
+    private int idContratoAtual;
 
     /**
-     * Creates new form CadastroDeContratoV
+     * Creates new form AtualizarContratoV
      */
-    public CadastroDeContratoV() {
+    public AtualizarContratoV() {
         initComponents();
     }
 
@@ -33,11 +32,6 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jTDatainicio = new javax.swing.JTextField();
         jTDatatermino = new javax.swing.JTextField();
         jTValor = new javax.swing.JTextField();
@@ -46,21 +40,19 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTDiadeVencimento = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTIDContrato = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-
-        jLabel2.setText("Data Inicio:");
-
-        jLabel3.setText("Data Fim");
-
-        jLabel4.setText("Valor:");
-
-        jLabel5.setText("ID Inquilino");
-
-        jLabel6.setText("Id Propriedade");
 
         jTDatainicio.setColumns(10);
 
@@ -72,10 +64,10 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
 
         jTIDPropriedade.setColumns(10);
 
-        jButton1.setText("Cadastrar Contrato");
+        jButton1.setText("Atualizar Informacoes Contrato");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastrarContrato(evt);
+                atualizarContrato(evt);
             }
         });
 
@@ -83,15 +75,33 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
 
         jTDiadeVencimento.setColumns(10);
 
+        jLabel2.setText("Data Inicio:");
+
+        jLabel3.setText("Data Fim");
+
+        jLabel4.setText("Valor:");
+
+        jLabel5.setText("ID Inquilino");
+
+        jLabel6.setText("Id Propriedade");
+
+        jButton2.setText("Busca Contrato");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscaContrato(evt);
+            }
+        });
+
+        jLabel7.setText("ID contrato");
+
+        jTIDContrato.setColumns(10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,13 +122,26 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
                                     .addComponent(jTIDInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTDatatermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTDatainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                                    .addComponent(jTDatainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTIDContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel7)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTIDContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTDatainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -142,74 +165,108 @@ public class CadastroDeContratoV extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTDiadeVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(jButton1)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CadastrarContrato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarContrato
-        try {
-            // Obter valores dos campos
-            String dataInicio = jTDatainicio.getText();
-            String dataFim = jTDatatermino.getText();
-            double valor = Double.parseDouble(jTValor.getText());
-            int idInquilino = Integer.parseInt(jTIDInquilino.getText());
-            int idImovel = Integer.parseInt(jTIDPropriedade.getText());
-            int diavencimento = Integer.parseInt(jTDiadeVencimento.getText());
-            // Verificar se o inquilino existe
-            inquilinosC inquilinoController =new inquilinosC();
-            PropriedadesC propriedadeController = new PropriedadesC();
-            ContratosC contratoController =new  ContratosC();
-            ResultSet rsInquilino = inquilinoController.consultarInquilino(idInquilino);
-            if (!rsInquilino.next()) {
-                JOptionPane.showMessageDialog(this, "Inquilino não encontrado com o ID: " + idInquilino, 
-                    "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            // Verificar se o imóvel existe
-            ResultSet rsImovel = propriedadeController.consultarPropriedade(idImovel);
-            if (!rsImovel.next()) {
-                JOptionPane.showMessageDialog(this, "Imóvel não encontrado com o ID: " + idImovel, 
-                    "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            // Criar objeto ContratoM
-            ContratoM novoContrato = new ContratoM(dataInicio, dataFim, valor, idInquilino,idImovel,diavencimento);
-            // Chamar o controller para inserir o contrato
-            contratoController.inserirContrato(novoContrato);
-            
-            // Mensagem de sucesso
-            JOptionPane.showMessageDialog(this, "Contrato cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Por favor, insira valores numéricos válidos para Valor, ID Inquilino e ID Imóvel.", 
-                "Erro de Formato", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar contrato: " + e.getMessage(), 
-                "Erro", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+    private void BuscaContrato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscaContrato
+    try {
+        // Obter o ID do contrato do campo de texto
+        String idStr = jTIDContrato.getText().trim();
+        
+        if (idStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informe o ID do contrato!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        
+        idContratoAtual = Integer.parseInt(idStr);
+        ResultSet rs = controlador.consultarContrato(idContratoAtual);
+        
+        if (rs != null && rs.next()) {
+            jTDatainicio.setText(rs.getString("data_inicio"));
+            jTDatatermino.setText(rs.getString("data_fim"));
+            jTValor.setText(rs.getString("valor"));
+            jTIDInquilino.setText(rs.getString("id_inquilino"));
+            jTIDPropriedade.setText(rs.getString("id_propriedade"));
+            jTDiadeVencimento.setText(rs.getString("dia_vencimento"));
+        } else {
+            JOptionPane.showMessageDialog(this, "Contrato não encontrado!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "ID inválido! Deve ser um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
 
-    }//GEN-LAST:event_CadastrarContrato
+    }//GEN-LAST:event_BuscaContrato
 
+    private void atualizarContrato(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarContrato
+ try {
+            // Obter valores dos campos
+            String dataInicio = jTDatainicio.getText().trim();
+            String dataTermino = jTDatatermino.getText().trim();
+            String valor = jTValor.getText().trim();
+            String idInquilino = jTIDInquilino.getText().trim();
+            String idPropriedade = jTIDPropriedade.getText().trim();
+            String diaVencimento = jTDiadeVencimento.getText().trim();
+
+            // Validações básicas
+            if (dataInicio.isEmpty() || valor.isEmpty() || idInquilino.isEmpty() || 
+                idPropriedade.isEmpty() || diaVencimento.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            try {
+                // Converter valores para os tipos corretos
+                double valorDouble = Double.parseDouble(valor);
+                int idInquilinoInt = Integer.parseInt(idInquilino);
+                int idPropriedadeInt = Integer.parseInt(idPropriedade);
+                int diaVencimentoInt = Integer.parseInt(diaVencimento);
+                
+                // Criar objeto Contrato
+                ContratoM contrato = new ContratoM();
+                contrato.setDataInicio(dataInicio);
+                contrato.setDataFim(dataTermino);
+                contrato.setValor(valorDouble);
+                contrato.setIdInquilino(idInquilinoInt);
+                contrato.setIdPropriedade(idPropriedadeInt);
+                contrato.setDiaVencimento(diaVencimentoInt);
+
+                // Chamar controle para atualizar
+                controlador.atualizarContrato(idContratoAtual, contrato);
+                
+                
+                    JOptionPane.showMessageDialog(this, "Contrato atualizado com sucesso!");
+                
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Valores numéricos inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }    }//GEN-LAST:event_atualizarContrato
+                                                
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTDatainicio;
     private javax.swing.JTextField jTDatatermino;
     private javax.swing.JTextField jTDiadeVencimento;
+    private javax.swing.JTextField jTIDContrato;
     private javax.swing.JTextField jTIDInquilino;
     private javax.swing.JTextField jTIDPropriedade;
     private javax.swing.JTextField jTValor;

@@ -6,26 +6,20 @@ public class ContratoM {
     private String dataFim;
     private double valor;
     private int idInquilino;
-    private int idImovel;
+    private int idPropriedade;
+    private int diaVencimento; // Campo adicionado
 
     // Construtores
     public ContratoM() {}
 
-    public ContratoM(String dataInicio, String dataFim, double valor, int idInquilino, int idImovel) {
+    public ContratoM(String dataInicio, String dataFim, double valor, 
+                   int idInquilino, int idPropriedade, int diaVencimento) {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.valor = valor;
         this.idInquilino = idInquilino;
-        this.idImovel = idImovel;
-    }
-
-    public ContratoM(int idContrato, String dataInicio, String dataFim, double valor, int idInquilino, int idImovel) {
-        this.idContrato = idContrato;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.valor = valor;
-        this.idInquilino = idInquilino;
-        this.idImovel = idImovel;
+        this.idPropriedade = idPropriedade;
+        this.diaVencimento = diaVencimento;
     }
 
     // Getters e Setters
@@ -69,11 +63,19 @@ public class ContratoM {
         this.idInquilino = idInquilino;
     }
 
-    public int getIdImovel() {
-        return idImovel;
+    public int getIdPropriedade() {
+        return idPropriedade;
     }
 
-    public void setIdImovel(int idImovel) {
-        this.idImovel = idImovel;
+    public void setIdPropriedade(int idPropriedade) {
+        this.idPropriedade = idPropriedade;
+    }
+
+    public int getDiaVencimento() {
+        return diaVencimento;
+    }
+
+    public void setDiaVencimento(int diaVencimento) {
+        this.diaVencimento = diaVencimento;
     }
 }

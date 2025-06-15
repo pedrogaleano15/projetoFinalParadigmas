@@ -6,12 +6,17 @@ package Visao;
 
 import Controle.inquilinosC;
 import Modelo.informacoesPessoais;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
 public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
+private inquilinosC controlador = new inquilinosC();
+private int idInquilinoAtual;
 
     /**
      * Creates new form AtualizarInquilinoV
@@ -50,6 +55,8 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jTID = new javax.swing.JTextField();
 
         jLabel1.setText("Nome Completo:");
 
@@ -94,7 +101,7 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Email:");
 
-        jLabel10.setText("CADASTRO INQUILINO");
+        jLabel10.setText("Atualizar Inquilino");
 
         jButton1.setText("Buscar Informacoes");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,59 +110,68 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel11.setText("ID inquilino");
+
+        jTID.setColumns(10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTDatadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jButton1)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTDatadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel1))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(270, 270, 270)
+                                .addComponent(jButton1)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -164,6 +180,10 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,22 +222,126 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(3, 3, 3)))
-                .addGap(38, 38, 38))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Atualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atualizar
+try {
+        // 1. Obter os valores
+        String nomeCompleto = jTNomeCompleto.getText().trim();
+        String cpf = jTCPF.getText().trim().replaceAll("[^0-9]", "");
+        String rg = jTRG.getText().trim().replaceAll("[^0-9]", "");
+        String dataNasc = jTDatadeNascimento.getText().trim();
+        String telefone = jTTelefone.getText().trim().replaceAll("[^0-9]", "");
+        String email = jTEmail.getText().trim();
+        String profissao = jTProfissao.getText().trim();
+        String rendaStr = jTRendaMensal.getText().trim().replace(",", ".");
+        String estadoCivil = jTEstadoCivil.getText().trim();
+
+        // 2. Validações
+        if (nomeCompleto.isEmpty() || cpf.isEmpty() || telefone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome, CPF e Telefone são obrigatórios!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (cpf.length() != 11) {
+            JOptionPane.showMessageDialog(this, "CPF deve conter 11 dígitos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (telefone.length() < 10) {
+            JOptionPane.showMessageDialog(this, "Telefone inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // 3. Conversão segura
+        float renda = 0;
+        try {
+            renda = Float.parseFloat(rendaStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Renda inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // 4. Criar objeto
+        informacoesPessoais inquilino = new informacoesPessoais(
+            nomeCompleto,
+            cpf,
+            rg,
+            dataNasc,
+            telefone,
+            email,
+            profissao,
+            renda,
+            estadoCivil
+        );
+
+        // 5. Chamar o controle
+        inquilinosC controle = new inquilinosC();
+        controle.atualizarInquilino(WIDTH, inquilino);
+
+        JOptionPane.showMessageDialog(this, "Inquilino atualizado com sucesso!");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+    }
 
     }//GEN-LAST:event_Atualizar
 
     private void BuscarInformcoes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarInformcoes
-      
+                try {
+            // Obter ID do campo de texto
+            String idStr = jTID.getText().trim();
+            if (idStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, informe o ID do inquilino!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            idInquilinoAtual = Integer.parseInt(idStr);
+            ResultSet rs = controlador.consultarInquilino(idInquilinoAtual);
+            
+            if (rs != null && rs.next()) {
+                // Preencher campos com os dados do ResultSet
+                jTNomeCompleto.setText(rs.getString("nome_completo"));
+                jTCPF.setText(rs.getString("cpf"));
+                jTRG.setText(rs.getString("rg"));
+                jTDatadeNascimento.setText(rs.getString("data_nascimento"));
+                jTTelefone.setText(rs.getString("telefone"));
+                jTEmail.setText(rs.getString("email"));
+                jTProfissao.setText(rs.getString("profissao"));
+                jTRendaMensal.setText(rs.getString("renda_mensal"));
+                jTEstadoCivil.setText(rs.getString("estado_civil"));
+                
+                JOptionPane.showMessageDialog(this, "Dados do inquilino carregados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Inquilino não encontrado com o ID informado!", "Aviso", JOptionPane.WARNING_MESSAGE);
+                limparCampos();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID deve ser um número válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao acessar banco de dados: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro inesperado: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+              
     }//GEN-LAST:event_BuscarInformcoes
+private void limparCampos() {
+        jTNomeCompleto.setText("");
+        jTCPF.setText("");
+        jTRG.setText("");
+        jTDatadeNascimento.setText("");
+        jTTelefone.setText("");
+        jTEmail.setText("");
+        jTProfissao.setText("");
+        jTRendaMensal.setText("");
+        jTEstadoCivil.setText("");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,6 +349,7 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -237,6 +362,7 @@ public class AtualizarInquilinoV extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTDatadeNascimento;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTEstadoCivil;
+    private javax.swing.JTextField jTID;
     private javax.swing.JTextField jTNomeCompleto;
     private javax.swing.JTextField jTProfissao;
     private javax.swing.JTextField jTRG;
